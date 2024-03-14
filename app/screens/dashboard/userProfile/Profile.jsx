@@ -17,13 +17,11 @@ import styles from '../../../../styles/button';
 const Profile = ({ navigation }) => {
   const { authInfo } = useAppContext();
   const { logout, user } = authInfo;
-  const [asUser, setAsUser] = useState(user);
+  const [lsUser, setLsUser] = useState(user);
 
   useEffect(() => {
-    getStorage('user', setAsUser, 'object');
+    getStorage('user', setLsUser, 'object');
   }, []);
-
-  console.log('Profile page', asUser);
 
   return (
     <View className="flex-1 bg-white">
@@ -49,7 +47,7 @@ const Profile = ({ navigation }) => {
               <View className="name border-b border-gray-200 flex-row items-center gap-3 py-3">
                 <Image className="w-5 h-5" source={ProfileIcon} />
                 <Text className="text-base text-gray-400 font-medium capitalize">
-                  {asUser.name}
+                  {lsUser.name}
                 </Text>
               </View>
             </View>
@@ -57,7 +55,7 @@ const Profile = ({ navigation }) => {
               <View className="email border-b border-gray-200 flex-row items-center gap-3 py-3">
                 <Image className="w-5 h-5" source={EmailIcon} />
                 <Text className="text-base text-gray-400 font-medium">
-                  {asUser.email}
+                  {lsUser.email}
                 </Text>
               </View>
             </View>
@@ -72,7 +70,7 @@ const Profile = ({ navigation }) => {
             <View className="w-full px-4">
               <View className="password-change border-b border-gray-200 flex-row items-center gap-3 py-3">
                 <Image className="w-5 h-5" source={PasswordIcon} />
-                <Link to={{ screen: 'ChangePassword', params: { id: asUser._id } }}>
+                <Link to={{ screen: 'ChangePassword', params: { id: lsUser._id } }}>
                   <Text className="text-blue-500 text-base rounded font-medium capitalize py-2 px-3">
                     change password
                   </Text>
